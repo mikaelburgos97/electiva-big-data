@@ -4,11 +4,11 @@
 USE Northwind
 GO
 
--- 1. Ventas Totales por Período (Año y Mes)
+-- 1. Ventas Totales por PerÃ­odo (AÃ±o y Mes)
 -- Northwind
 CREATE VIEW NW_VentasTotalesPorPeriodo AS
 SELECT 
-    YEAR(o.OrderDate) AS Año,
+    YEAR(o.OrderDate) AS AÃ±o,
     MONTH(o.OrderDate) AS Mes,
     SUM(od.UnitPrice * od.Quantity * (1 - od.Discount)) AS VentaTotal
 FROM 
@@ -18,7 +18,7 @@ GROUP BY
     YEAR(o.OrderDate), MONTH(o.OrderDate);
 GO
 
--- 2. Ventas por Categoría de Producto
+-- 2. Ventas por CategorÃ­a de Producto
 -- Northwind
 CREATE VIEW NW_VentasPorCategoria AS
 SELECT 
@@ -32,9 +32,9 @@ GROUP BY
     c.CategoryName;
 GO
 
--- 3. Total de Ventas por Categoría (ya cubierto por la vista anterior)
+-- 3. Total de Ventas por CategorÃ­a (ya cubierto por la vista anterior)
 
--- 4. Ventas por Región/País
+-- 4. Ventas por RegiÃ³n/PaÃ­s
 -- Northwind
 CREATE VIEW NW_VentasPorRegionPais AS
 SELECT 
@@ -48,7 +48,7 @@ GROUP BY
     o.ShipCountry, o.ShipRegion;
 GO
 
--- 5. Número de Pedidos Procesados por Empleado
+-- 5. NÃºmero de Pedidos Procesados por Empleado
 -- Northwind
 CREATE VIEW NW_PedidosPorEmpleado AS
 SELECT 
@@ -91,7 +91,7 @@ GROUP BY
     e.EmployeeID, e.FirstName, e.LastName;
 GO
 
--- 8. Productos Más Vendidos
+-- 8. Productos MÃ¡s Vendidos
 -- Northwind
 CREATE VIEW NW_ProductosMasVendidos AS
 SELECT TOP 10
@@ -107,7 +107,7 @@ ORDER BY
     CantidadVendida DESC;
 GO
 
--- 9. Productos Más Vendidos por Categoría
+-- 9. Productos MÃ¡s Vendidos por CategorÃ­a
 -- Northwind
 CREATE VIEW NW_ProductosMasVendidosPorCategoria AS
 SELECT 
@@ -138,7 +138,7 @@ GROUP BY
     s.ShipperID, s.CompanyName;
 GO
 
--- 11. Número de Órdenes Enviadas por Transportista
+-- 11. NÃºmero de Ã“rdenes Enviadas por Transportista
 -- Northwind
 CREATE VIEW NW_OrdenesPorTransportista AS
 SELECT 
@@ -167,7 +167,7 @@ GROUP BY
     c.CustomerID, c.CompanyName;
 GO
 
--- 13. Número de Órdenes por Cliente
+-- 13. NÃºmero de Ã“rdenes por Cliente
 -- Northwind
 CREATE VIEW NW_OrdenesPorCliente AS
 SELECT 
@@ -185,11 +185,11 @@ GO
 USE pubs
 GO
 
--- 1. Ventas Totales por Período (Año y Mes)
+-- 1. Ventas Totales por PerÃ­odo (AÃ±o y Mes)
 -- Pubs
 CREATE VIEW PB_VentasTotalesPorPeriodo AS
 SELECT 
-    YEAR(s.ord_date) AS Año,
+    YEAR(s.ord_date) AS AÃ±o,
     MONTH(s.ord_date) AS Mes,
     SUM(s.qty * t.price) AS VentaTotal
 FROM 
@@ -199,7 +199,7 @@ GROUP BY
     YEAR(s.ord_date), MONTH(s.ord_date);
 GO
 
--- 2. Ventas por Categoría de Producto
+-- 2. Ventas por CategorÃ­a de Producto
 -- Pubs
 CREATE VIEW PB_VentasPorCategoria AS
 SELECT 
@@ -212,7 +212,7 @@ GROUP BY
     t.type;
 GO
 
--- 4. Ventas por Región/País
+-- 4. Ventas por RegiÃ³n/PaÃ­s
 -- Pubs
 CREATE VIEW PB_VentasPorRegionPais AS
 SELECT 
@@ -227,8 +227,8 @@ GROUP BY
     st.state, st.country;
 GO
 
--- 5. Número de Pedidos Procesados por Empleado
--- Pubs (Nota: Esta vista es una aproximación, ya que Pubs no tiene una relación directa entre empleados y ventas)
+-- 5. NÃºmero de Pedidos Procesados por Empleado
+-- Pubs (Nota: Esta vista es una aproximaciÃ³n, ya que Pubs no tiene una relaciÃ³n directa entre empleados y ventas)
 CREATE VIEW PB_PedidosPorEmpleado AS
 SELECT 
     e.emp_id,
@@ -244,7 +244,7 @@ GROUP BY
 GO
 
 -- 6. Productividad de Empleados (Ventas por Empleado)
--- Pubs (Nota: Esta vista es una aproximación, ya que Pubs no tiene una relación directa entre empleados y ventas)
+-- Pubs (Nota: Esta vista es una aproximaciÃ³n, ya que Pubs no tiene una relaciÃ³n directa entre empleados y ventas)
 CREATE VIEW PB_ProductividadEmpleados AS
 SELECT 
     e.emp_id,
@@ -260,7 +260,7 @@ GROUP BY
 GO
 
 -- 7. Clientes Atendidos por Empleado
--- Pubs (Nota: Esta vista es una aproximación, ya que Pubs no tiene una relación directa entre empleados y clientes)
+-- Pubs (Nota: Esta vista es una aproximaciÃ³n, ya que Pubs no tiene una relaciÃ³n directa entre empleados y clientes)
 CREATE VIEW PB_ClientesPorEmpleado AS
 SELECT 
     e.emp_id,
@@ -275,7 +275,7 @@ GROUP BY
     e.emp_id, e.fname, e.lname;
 GO
 
--- 8. Productos Más Vendidos
+-- 8. Productos MÃ¡s Vendidos
 -- Pubs
 CREATE VIEW PB_ProductosMasVendidos AS
 SELECT TOP 10
@@ -291,7 +291,7 @@ ORDER BY
     CantidadVendida DESC;
 GO
 
--- 9. Productos Más Vendidos por Categoría
+-- 9. Productos MÃ¡s Vendidos por CategorÃ­a
 -- Pubs
 CREATE VIEW PB_ProductosMasVendidosPorCategoria AS
 SELECT 
@@ -321,7 +321,7 @@ GROUP BY
     st.stor_id, st.stor_name;
 GO
 
--- 13. Número de Órdenes por Cliente
+-- 13. NÃºmero de Ã“rdenes por Cliente
 -- Pubs
 CREATE VIEW PB_OrdenesPorCliente AS
 SELECT 
@@ -335,6 +335,3 @@ GROUP BY
     st.stor_id, st.stor_name;
 GO
 
--- Nota final: Este script ha creado vistas para ambas bases de datos, Northwind y Pubs.
--- Las vistas de Northwind son más completas debido a la estructura de la base de datos.
--- Las vistas de Pubs son aproximaciones en algunos casos debido a las limitaciones de su estructura.
